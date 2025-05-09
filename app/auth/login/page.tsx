@@ -19,31 +19,35 @@ export default function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState("+91 ")
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
 
-    if (!phoneNumber || phoneNumber.length < 10) {
-      toast({
-        title: t("error"),
-        description: t("invalidPhoneNumber"),
-        variant: "destructive",
-      })
-      return
-    }
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
 
-    setIsLoading(true)
-
-    // Simulate API call
-    setTimeout(() => {
-      // Store phone number for OTP verification
-      localStorage.setItem("vaya_phone", phoneNumber)
-
-      // Redirect to OTP verification
-      router.push("/auth/verify")
-
-      setIsLoading(false)
-    }, 1500)
+  if (!phoneNumber || phoneNumber.length < 10) {
+    toast({ title: t("error"), description: t("invalidPhoneNumber"), variant: "destructive" })
+    return
   }
+
+  setIsLoading(true)
+
+  try {
+    const res = await fetch("/api/auth/send-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: phoneNumber }),
+    })
+
+    if (!res.ok) throw new Error()
+
+    localStorage.setItem("vaya_phone", phoneNumber)
+    router.push("/auth/verify")
+  } catch {
+    toast({ title: t("error"), description: "Failed to send OTP", variant: "destructive" })
+  } finally {
+    setIsLoading(false)
+  }
+}
+
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
@@ -87,3 +91,32 @@ export default function LoginPage() {
     </div>
   )
 }
+
+
+
+
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault()
+
+  //   if (!phoneNumber || phoneNumber.length < 10) {
+  //     toast({
+  //       title: t("error"),
+  //       description: t("invalidPhoneNumber"),
+  //       variant: "destructive",
+  //     })
+  //     return
+  //   }
+
+  //   setIsLoading(true)
+
+  //   // Simulate API call
+  //   setTimeout(() => {
+  //     // Store phone number for OTP verification
+  //     localStorage.setItem("vaya_phone", phoneNumber)
+      
+  //     // Redirect to OTP verification
+  //     router.push("/auth/verify")
+
+  //     setIsLoading(false)
+  //   }, 1500)
+  // }

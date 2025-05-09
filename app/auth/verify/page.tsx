@@ -34,34 +34,64 @@ export default function VerifyPage() {
     return () => clearInterval(timer)
   }, [router])
 
-  const handleVerify = () => {
-    if (otp.length !== 4) {
-      toast({
-        title: t("error"),
-        description: t("invalidOtp"),
-        variant: "destructive",
-      })
-      return
-    }
+  // const handleVerify = () => {
+  //   if (otp.length !== 4) {
+  //     toast({
+  //       title: t("error"),
+  //       description: t("invalidOtp"),
+  //       variant: "destructive",
+  //     })
+  //     return
+  //   }
 
-    setIsLoading(true)
+  //   setIsLoading(true)
 
-    // Simulate API call - mock OTP validation (accept any 4-digit code)
-    setTimeout(() => {
-      // Set auth token
-      localStorage.setItem("vaya_auth_token", "mock-token-" + Date.now())
+  //   // Simulate API call - mock OTP validation (accept any 4-digit code)
+  //   setTimeout(() => {
+  //     // Set auth token
+  //     localStorage.setItem("vaya_auth_token", "mock-token-" + Date.now())
 
-      toast({
-        title: t("success"),
-        description: t("loginSuccess"),
-      })
+  //     toast({
+  //       title: t("success"),
+  //       description: t("loginSuccess"),
+  //     })
 
-      // Redirect to dashboard
-      router.push("/dashboard")
+  //     // Redirect to dashboard
+  //     router.push("/dashboard")
 
-      setIsLoading(false)
-    }, 1500)
+  //     setIsLoading(false)
+  //   }, 1500)
+  // }
+
+
+  const handleVerify = async () => {
+  if (otp.length !== 4) {
+    toast({ title: t("error"), description: t("invalidOtp"), variant: "destructive" })
+    return
   }
+
+  setIsLoading(true)
+
+  try {
+    const res = await fetch("/api/auth/verify-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: phoneNumber, otp }),
+    })
+
+    if (!res.ok) throw new Error()
+
+    const data = await res.json()
+    localStorage.setItem("vaya_auth_token", data.token)
+
+    toast({ title: t("success"), description: t("loginSuccess") })
+    router.push("/dashboard")
+  } catch {
+    toast({ title: t("error"), description: "Invalid OTP", variant: "destructive" })
+  } finally {
+    setIsLoading(false)
+  }
+}
 
   const handleResend = () => {
     if (countdown > 0) return
