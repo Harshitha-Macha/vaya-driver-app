@@ -288,7 +288,11 @@ export default function RidePage() {
       <RideHeader ride={ride} />
 
       <div className="p-4 space-y-4">
-        <RideMap ride={ride} />
+        {/* <RideMap ride={ride} /> */}
+        {/* {ride && <RideMap ride={ride} />} */}
+        {ride && <RideMap ride={{ pickup: ride.pickup, dropoff: ride.dropoff }} />}
+
+
 
         {showOtpVerification ? (
           <RideOtpVerification onVerified={handleOtpVerified} />

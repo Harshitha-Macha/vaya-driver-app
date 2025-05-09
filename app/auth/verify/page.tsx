@@ -6,12 +6,15 @@ import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useLocale } from "@/components/locale-provider"
+import { useFontSize } from "@/lib/font-size-provider"
 import OtpInput from "@/components/otp-input"
+import { AppLogo } from "@/components/app-logo"
 
 export default function VerifyPage() {
   const router = useRouter()
   const { toast } = useToast()
   const { t } = useLocale()
+  const { fontSizeClass } = useFontSize()
   const [otp, setOtp] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -108,7 +111,10 @@ export default function VerifyPage() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">{t("verifyTitle")}</CardTitle>
+          <div className="flex justify-center mb-4">
+            <AppLogo />
+          </div>
+          <CardTitle className={`text-2xl font-bold text-center ${fontSizeClass}`}>{t("verifyTitle")}</CardTitle>
           <CardDescription className="text-center">
             {t("verifyDescription")} {phoneNumber}
           </CardDescription>
