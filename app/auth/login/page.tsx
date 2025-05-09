@@ -9,13 +9,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useLocale } from "@/components/locale-provider"
+import { useFontSize } from "@/lib/font-size-provider"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { PhoneIcon } from "lucide-react"
+import { AppLogo } from "@/components/app-logo"
 
 export default function LoginPage() {
   const router = useRouter()
   const { toast } = useToast()
   const { t } = useLocale()
+  const { fontSizeClass } = useFontSize()
   const [phoneNumber, setPhoneNumber] = useState("+91 ")
   const [isLoading, setIsLoading] = useState(false)
 
@@ -49,7 +52,10 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">{t("loginTitle")}</CardTitle>
+          <div className="flex justify-center mb-4">
+            <AppLogo />
+          </div>
+          <CardTitle className={`text-2xl font-bold text-center ${fontSizeClass}`}>{t("loginTitle")}</CardTitle>
           <CardDescription className="text-center">{t("loginDescription")}</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -64,7 +70,7 @@ export default function LoginPage() {
                   placeholder={t("phoneNumberPlaceholder")}
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  className="border-0 focus-visible:ring-0"
+                  className={`border-0 focus-visible:ring-0 ${fontSizeClass}`}
                 />
               </div>
             </div>

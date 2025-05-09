@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
+import { AppLogo } from "@/components/app-logo"
 
 export default function Home() {
   const router = useRouter()
@@ -10,11 +11,16 @@ export default function Home() {
   useEffect(() => {
     // Check if user is logged in
     const isLoggedIn = localStorage.getItem("vaya_auth_token")
+    const profileComplete = localStorage.getItem("vaya_profile_complete")
 
     // Redirect after a small delay to simulate checking auth status
     const timer = setTimeout(() => {
       if (isLoggedIn) {
-        router.push("/dashboard")
+        if (profileComplete === "true") {
+          router.push("/dashboard")
+        } else {
+          router.push("/create-profile")
+        }
       } else {
         router.push("/auth/login")
       }
@@ -26,7 +32,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-col items-center gap-4">
-        <h1 className="text-3xl font-bold">Vaya Driver</h1>
+        <AppLogo className="mb-4 scale-150" />
         <Loader2 className="h-8 w-8 animate-spin" />
       </div>
     </div>

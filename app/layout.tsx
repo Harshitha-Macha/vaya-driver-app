@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { LocaleProvider } from "@/components/locale-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { FontSizeProvider } from "@/lib/font-size-provider"
+import { RouteGuard } from "@/lib/route-guard"
 import "@/app/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -11,7 +12,6 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "Vaya Driver",
   description: "Vaya driver-side web application",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -25,8 +25,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={["light", "dark"]}>
           <LocaleProvider>
             <FontSizeProvider>
-              <main className="min-h-screen bg-background">{children}</main>
-              <Toaster />
+              <RouteGuard>
+                <main className="min-h-screen bg-background">{children}</main>
+                <Toaster />
+              </RouteGuard>
             </FontSizeProvider>
           </LocaleProvider>
         </ThemeProvider>
