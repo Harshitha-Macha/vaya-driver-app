@@ -58,7 +58,7 @@ export default function RidePage() {
       return
     }
 
-    setRide((prev) => ({
+    setRide((prev:any) => ({
       ...prev,
       status: newStatus,
     }))
@@ -95,7 +95,7 @@ export default function RidePage() {
     setShowOtpVerification(false)
 
     // Update ride status after OTP verification
-    setRide((prev) => ({
+    setRide((prev:any) => ({
       ...prev,
       status: "inProgress",
     }))
