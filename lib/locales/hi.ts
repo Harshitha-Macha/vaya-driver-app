@@ -1,0 +1,130 @@
+export const hi = {
+  // Auth
+  loginTitle: "ड्राइवर लॉगिन",
+  loginDescription: "वेरिफिकेशन कोड प्राप्त करने के लिए अपना फोन नंबर दर्ज करें",
+  phoneNumberPlaceholder: "अपना फोन नंबर दर्ज करें",
+  continueButton: "जारी रखें",
+  sending: "भेज रहा है...",
+  verifyTitle: "फोन वेरिफाई करें",
+  verifyDescription: "भेजे गए 4-अंकों का कोड दर्ज करें",
+  verifyButton: "वेरिफाई करें",
+  verifying: "वेरिफाई कर रहा है...",
+  resendIn: "कोड पुनः भेजें",
+  resendOtp: "कोड पुनः भेजें",
+  otpResent: "कोड पुनः भेजा गया",
+  checkPhone: "वेरिफिकेशन कोड के लिए अपना फोन चेक करें",
+
+  // Dashboard
+  youreOnline: "आप ऑनलाइन हैं",
+  youreOffline: "आप ऑफलाइन हैं",
+  receivingRides: "आप राइड अनुरोध प्राप्त कर रहे हैं",
+  notReceivingRides: "आप राइड अनुरोध प्राप्त नहीं कर रहे हैं",
+  goOffline: "ऑफलाइन जाएं",
+  goOnline: "ऑनलाइन जाएं",
+  availableRides: "उपलब्ध राइड",
+  goOnlineToSeeRides: "उपलब्ध राइड देखने के लिए ऑनलाइन जाएं",
+  noRidesAvailable: "कोई राइड उपलब्ध नहीं है",
+  noRidesDescription: "इस समय कोई राइड उपलब्ध नहीं है। कृपया बाद में फिर से जांचें।",
+
+  // Ride
+  rideDetails: "राइड विवरण",
+  pickup: "पिकअप",
+  dropoff: "ड्रॉपऑफ",
+  passenger: "यात्री",
+  call: "कॉल करें",
+  estimatedTime: "अनुमानित समय",
+  fare: "किराया",
+  acceptRide: "राइड स्वीकार करें",
+  arrivedAtPickup: "पिकअप पर पहुंचे",
+  startRide: "राइड शुरू करें",
+  completeRide: "राइड पूरी करें",
+  rideCompleted: "राइड पूरी हुई",
+  rideCompletedDescription: "राइड सफलतापूर्वक पूरी हुई",
+  statusUpdated: "स्थिति अपडेट की गई",
+  statusAccepted: "राइड स्वीकार की गई",
+  statusArrived: "पिकअप स्थान पर पहुंचे",
+  statusInProgress: "राइड प्रगति पर है",
+  statusCompleted: "राइड पूरी हुई",
+  mapPlaceholder: "मैप व्यू",
+  continueOn: "जारी रखें",
+
+  // OTP
+  enterRideOtp: "यात्री OTP दर्ज करें",
+  enterRideOtpDescription: "राइड शुरू करने के लिए यात्री से 6-अंकों का OTP पूछें",
+  verifyOtp: "OTP वेरिफाई करें",
+  invalidRideOtp: "अमान्य OTP। कृपया पुनः प्रयास करें।",
+  otpVerified: "OTP वेरिफाई हुआ",
+  startingRide: "राइड शुरू हो रही है...",
+
+  // Navigation
+  dashboard: "डैशबोर्ड",
+  history: "इतिहास",
+  earnings: "मेरी कमाई",
+  support: "सहायता और समर्थन",
+  settings: "सेटिंग्स",
+  profile: "प्रोफाइल",
+  logout: "लॉगआउट",
+  language: "भाषा",
+  english: "English",
+  hindi: "हिंदी",
+  telugu: "తెలుగు",
+
+  // History
+  rideHistory: "राइड इतिहास",
+  noRideHistory: "कोई राइड इतिहास नहीं",
+  noRideHistoryDescription: "आपने अभी तक कोई राइड पूरी नहीं की है।",
+  date: "तारीख",
+  distance: "दूरी",
+
+  // Earnings
+  myEarnings: "मेरी कमाई",
+  totalEarnings: "कुल कमाई",
+  totalRides: "कुल राइड",
+  averageFare: "औसत किराया",
+  today: "आज",
+  thisWeek: "इस सप्ताह",
+  thisMonth: "इस महीने",
+
+  // Support
+  helpAndSupport: "सहायता और समर्थन",
+  submitIssue: "समस्या सबमिट करें",
+  issueType: "समस्या का प्रकार",
+  paymentIssue: "भुगतान समस्या",
+  rideIssue: "राइड समस्या",
+  appIssue: "ऐप समस्या",
+  otherIssue: "अन्य समस्या",
+  issueDescription: "समस्या का विवरण",
+  describeYourIssue: "अपनी समस्या का विस्तार से वर्णन करें",
+  submit: "सबमिट करें",
+  submitting: "सबमिट कर रहा है...",
+  issueSubmitted: "समस्या सबमिट की गई",
+  issueSubmittedDescription: "हमें आपकी समस्या प्राप्त हो गई है और हम जल्द ही आपसे संपर्क करेंगे।",
+
+  // Settings
+  appSettings: "ऐप सेटिंग्स",
+  fontSize: "फॉन्ट साइज़",
+  small: "छोटा",
+  medium: "मध्यम",
+  large: "बड़ा",
+  fontSizeUpdated: "फॉन्ट साइज़ अपडेट किया गया",
+
+  // Profile
+  personalInformation: "व्यक्तिगत जानकारी",
+  fullName: "पूरा नाम",
+  email: "ईमेल",
+  phoneNumber: "फोन नंबर",
+  saveChanges: "परिवर्तन सहेजें",
+  profileUpdated: "प्रोफाइल अपडेट किया गया",
+
+  // Errors
+  error: "त्रुटि",
+  invalidPhoneNumber: "कृपया एक वैध फोन नंबर दर्ज करें",
+  invalidOtp: "कृपया एक वैध 4-अंकों का कोड दर्ज करें",
+  rideNotFound: "राइड नहीं मिली",
+  pleaseEnterDescription: "कृपया विवरण दर्ज करें",
+
+  // Success
+  success: "सफलता",
+  loginSuccess: "लॉगिन सफल",
+  settingsSaved: "सेटिंग्स सफलतापूर्वक सहेजी गईं",
+}
