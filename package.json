@@ -62,6 +62,7 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "twilio": "^5.6.0",
+    "universalify": "^2.0.1",
     "vaul": "^0.9.6",
     "zod": "^3.24.1"
   },

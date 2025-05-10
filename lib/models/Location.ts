@@ -16,14 +16,11 @@ const LocationSchema = new mongoose.Schema({
         required: true 
     },
     zones: [{ 
-        type: String,
-        required: true 
+        type: String 
     }]
 }, {
     timestamps: true
 });
 
-LocationSchema.index({ district: 1, town: 1 }, { unique: true });
-
-export const Location = mongoose.models.Location || 
+export const Location = (mongoose.models.Location as mongoose.Model<ILocation>) || 
     mongoose.model<ILocation>('Location', LocationSchema);

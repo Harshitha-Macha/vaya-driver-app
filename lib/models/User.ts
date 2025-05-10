@@ -8,8 +8,13 @@ export interface IUser extends Document {
     town?: string;
     currentZone?: string;
     isOnline?: boolean;
+    awaitingPickupAddress?: boolean;
     createdAt: Date;
     updatedAt: Date;
+    currentRide?: string;
+    lastRideTime?: Date;
+    rating?: number;
+    totalRides?: number;
 }
 
 const UserSchema = new mongoose.Schema({
@@ -33,10 +38,14 @@ const UserSchema = new mongoose.Schema({
     district: { type: String },
     town: { type: String },
     currentZone: { type: String },
-    isOnline: { type: Boolean, default: true }
+    isOnline: { type: Boolean, default: false },
+    awaitingPickupAddress: { type: Boolean, default: false },
+    currentRide: { type: String },
+    lastRideTime: { type: Date },
+    rating: { type: Number, default: 5.0 },
+    totalRides: { type: Number, default: 0 }
 }, { 
-    timestamps: true,
-    versionKey: false
+    timestamps: true
 });
 
 export const User = (mongoose.models.User as mongoose.Model<IUser>) || 

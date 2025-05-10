@@ -3,67 +3,35 @@ import mongoose, { Document } from 'mongoose';
 export interface IRide extends Document {
     userId: string;
     driverId?: string;
-    status: 'REQUESTED' | 'ACCEPTED' | 'STARTED' | 'COMPLETED' | 'CANCELLED';
-    pickupLocation: {
-        type: 'Point';
-        coordinates: [number, number];
-    };
-    dropLocation?: {
-        type: 'Point';
-        coordinates: [number, number];
-    };
-    fare?: number;
-    requestTime: Date;
+    district: string;
+    town: string;
+    zone: string;
+    pickupAddress: string;
+    status: 'REQUESTED' | 'ACCEPTED' | 'PICKED_UP' | 'COMPLETED' | 'CANCELLED';
     acceptTime?: Date;
-    startTime?: Date;
-    endTime?: Date;
+    completedAt?: Date;
     createdAt: Date;
     updatedAt: Date;
 }
 
 const RideSchema = new mongoose.Schema({
-    userId: {
-        type: String,
-        required: true,
-        ref: 'User'
-    },
-    driverId: {
-        type: String,
-        ref: 'User'
-    },
+    userId: { type: String, required: true },
+    driverId: { type: String },
+    district: { type: String, required: true },
+    town: { type: String, required: true },
+    zone: { type: String, required: true },
+    pickupAddress: { type: String, required: true },
     status: {
         type: String,
         required: true,
-        enum: ['REQUESTED', 'ACCEPTED', 'STARTED', 'COMPLETED', 'CANCELLED'],
+        enum: ['REQUESTED', 'ACCEPTED', 'PICKED_UP', 'COMPLETED', 'CANCELLED'],
         default: 'REQUESTED'
     },
-    pickupLocation: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
-    },
-    dropLocation: {
-        type: {
-            type: String,
-            enum: ['Point']
-        },
-        coordinates: [Number]
-    },
-    fare: Number,
-    requestTime: { type: Date, default: Date.now },
-    acceptTime: Date,
-    startTime: Date,
-    endTime: Date
+    acceptTime: { type: Date },
+    completedAt: { type: Date }
 }, {
     timestamps: true
 });
 
-RideSchema.index({ pickupLocation: '2dsphere' });
-
-export const Ride = mongoose.models.Ride || mongoose.model<IRide>('Ride', RideSchema);
+export const Ride = (mongoose.models.Ride as mongoose.Model<IRide>) ||
+    mongoose.model<IRide>('Ride', RideSchema);

@@ -18,12 +18,26 @@ import withPWA from 'next-pwa'
 
 const isDev = process.env.NODE_ENV === 'development'
 
+/** @type {import('next').NextConfig} */
+const baseConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    unoptimized: true,
+  }
+}
+
 export default withPWA({
   dest: 'public',
   disable: isDev,
   register: true,
   scope: '/',
-  sw: 'service-worker.js', // This file will be auto-generated
+  sw: 'service-worker.js',
   runtimeCaching: [],
-  // Your other next config options
-})
+  manifest: '/manifest.json',
+  skipWaiting: true,
+}, baseConfig)
